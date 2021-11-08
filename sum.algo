@@ -1,0 +1,80 @@
+ALGORITHM sommation
+VAR
+first:  HASH_TABLE<integer,integer>;
+ x : ARRAY_OF integer[50];
+ y : ARRAY_OF integer[50];
+ sum1,sum2,i,j,sum,summ:integer
+BEGIN
+    FOR i FROM 0 TO 3  DO
+        read (x[i])
+    END_FOR
+    FOR j FROM 0 TO 4 DO
+        read (y[j])
+    END_FOR
+    sum=0
+    FOR i FROM 0 TO 3    
+           DO
+           j=0
+        while ( x[i]<>y[j] and j<4 ) THEN
+            j++
+            END_WHILE  
+            IF (j=4) THEN
+                sum=sum+h
+               
+            END_IF   
+            END_FOR
+            write ("the sum of distinct elements "sum)
+
+ 
+ summ=0
+    FOR i FROM 0 TO 3    
+           DO
+           j=0
+        while ( x[i]<>y[j] and j<4 ) THEN
+            j++
+            END_WHILE  
+            IF (j<4) THEN
+                summ=summ+h*2
+               
+            END_IF   
+            END_FOR
+            write ("the sum of repeated elements "summ)
+
+    //hashtable
+    FOR i FROM 0 TO 3  DO
+        first.insert(x[i],1)
+    END_FOR
+FOR j FROM 0 TO 4  DO
+    IF (first.lookup(y[j])) THEN
+        first.insert(y[j],2)
+       
+        ELSE 
+            first.insert(y[j],1)
+    END_IF
+END_FOR
+summ=0
+FOR i FROM 0 TO 3 DO
+IF (first.get(x[i])!=1) THEN
+    summ=summ+x[i]*2
+END_IF
+END_FOR
+write ("the sum of repeated elements "summ)
+/*
+FOR  (0<=i<=3 and 0<=j<=4)  DO
+IF (first.get(x[i])==1 and first.get(y[j]==1)) THEN
+    sum=sum+x[i]
+END_IF
+END_FOR */
+
+FOR i FROM 0 TO 3  DO
+    if(first.get(x[i])==1) THEN
+    sum1=sum+x[i]
+    END_IF
+END_FOR
+FOR j FROM 0 TO 4  DO
+  if(first.get(y[j])==1) THEN
+  sum2=sum+y[j]
+  END_IF
+END_FOR
+write ("the sum of distinct elements "sum1+sum2)
+END
